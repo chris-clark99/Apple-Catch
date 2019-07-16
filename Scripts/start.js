@@ -1,0 +1,55 @@
+﻿var Text : UI.Text;
+var Text2 : UI.Text;
+var anim1 : Animation;
+var anim2 : Animation;
+var anim3 : Animation;
+var anim4 : Animation;
+var anim5 : Animation;
+var anim6 : Animation;
+var anim7 : Animation;
+var anim8 : Animation;
+var anim9 : Animation;
+var anim10 : Animation;
+var audio1 : AudioSource;
+var audio2 : AudioSource;
+var move1 : GameObject;
+var powerobj : GameObject;
+var preview : GameObject;
+var grass : GameObject;
+function Start(){
+	PlayerPrefs.SetInt("gameno", 0);
+	powerobj.SetActive(false);
+	PlayerPrefs.SetInt("Score", 0);
+	PlayerPrefs.SetInt("Initiate", 0);
+	PlayerPrefs.SetInt("magnet", 0);
+	Text.text=PlayerPrefs.GetInt("HighScore").ToString();
+}
+function tap2start(){
+	PlayerPrefs.SetInt("gameno", (PlayerPrefs.GetInt("gameno")+1));
+    PlayerPrefs.SetInt("Initiate", 1);
+    PlayerPrefs.SetInt("rand", Random.Range(5, 11));
+    move1.SetActive(true);
+	powerobj.SetActive(false);
+	powerobj.GetComponent(SpriteRenderer).color.a=0;
+    audio1.Stop();
+    audio2.Play();
+    PlayerPrefs.SetInt("Score", 0);
+    PlayerPrefs.SetInt("Lives", 3);
+    PlayerPrefs.SetInt("Count", 0);
+    anim1.Play("TitleSlideOut");
+    anim2.Play("StartSlideOut");
+	anim3.Play("MenuSlideOut");
+    anim4.Play("MusicSlideOut");
+    anim5.Play("MusicSlideOut");
+	anim6.Play("LBSlideOut");
+	anim7.Play("AchieveSlideOut");
+	anim8.Play();
+	anim9.Play();
+	anim10.Play();
+    PlayerPrefs.SetInt("clicked", 0);
+	PlayerPrefs.SetFloat("timeToWait", 3.0);
+	preview.SetActive(true);
+	grass.SendMessage ("Status");
+	Text2.text = "0";
+	Text2.transform.GetChild(0).GetComponent(UI.Text).text = "0";
+}
